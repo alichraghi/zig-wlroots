@@ -47,6 +47,10 @@ pub const XdgActivationTokenV1 = @import("types/xdg_activation_v1.zig").XdgActiv
 pub const LayerShellV1 = @import("types/layer_shell_v1.zig").LayerShellV1;
 pub const LayerSurfaceV1 = @import("types/layer_shell_v1.zig").LayerSurfaceV1;
 
+pub const SessionLockManagerV1 = @import("types/session_lock_v1.zig").SessionLockManagerV1;
+pub const SessionLockV1 = @import("types/session_lock_v1.zig").SessionLockV1;
+pub const SessionLockSurfaceV1 = @import("types/session_lock_v1.zig").SessionLockSurfaceV1;
+
 pub const Seat = @import("types/seat.zig").Seat;
 pub const SerialRange = @import("types/seat.zig").SerialRange;
 pub const SerialRingset = @import("types/seat.zig").SerialRingset;

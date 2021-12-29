@@ -194,6 +194,9 @@ pub const Surface = extern struct {
     extern fn wlr_surface_is_xwayland_surface(surface: *Surface) bool;
     pub const isXWaylandSurface = wlr_surface_is_xwayland_surface;
 
+    extern fn wlr_surface_is_session_lock_surface_v1(surface: *Surface) bool;
+    pub const isSessionLockSurfaceV1 = wlr_surface_is_session_lock_surface_v1;
+
     extern fn wlr_surface_lock_pending(surface: *Surface) u32;
     pub const lockPending = wlr_surface_lock_pending;
 
