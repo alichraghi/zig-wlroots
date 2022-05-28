@@ -13,18 +13,10 @@ pub const InputDevice = extern struct {
         switch_device,
     };
 
-    const Impl = opaque {};
-
-    impl: *const Impl,
-
     type: Type,
     vendor: c_uint,
     product: c_uint,
     name: [*:0]u8,
-
-    width_mm: f64,
-    height_mm: f64,
-    output_name: [*:0]u8,
 
     /// InputDevice.type determines which of these is active
     device: extern union {
@@ -55,9 +47,6 @@ pub const InputDevice = extern struct {
         if (!wlr_input_device_is_libinput(wlr_dev)) return null;
         return wlr_libinput_get_device_handle(wlr_dev);
     }
-
-    extern fn wlr_input_device_is_headless(wlr_dev: *InputDevice) bool;
-    pub const isHeadless = wlr_input_device_is_headless;
 };
 
 const LibinputDevice = opaque {};

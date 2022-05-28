@@ -19,10 +19,9 @@ pub const DmabufBufferV1 = @import("types/linux_dmabuf_v1.zig").DmabufBufferV1;
 pub const LinuxDmabufV1 = @import("types/linux_dmabuf_v1.zig").LinuxDmabufV1;
 
 pub const Compositor = @import("types/compositor.zig").Compositor;
-pub const Subcompositor = @import("types/compositor.zig").Subcompositor;
-
-pub const Surface = @import("types/surface.zig").Surface;
-pub const Subsurface = @import("types/surface.zig").Subsurface;
+pub const Surface = @import("types/compositor.zig").Surface;
+pub const Subcompositor = @import("types/subcompositor.zig").Subcompositor;
+pub const Subsurface = @import("types/subcompositor.zig").Subsurface;
 
 pub const Viewporter = @import("types/viewporter.zig").Viewporter;
 
@@ -46,6 +45,10 @@ pub const XdgActivationTokenV1 = @import("types/xdg_activation_v1.zig").XdgActiv
 
 pub const LayerShellV1 = @import("types/layer_shell_v1.zig").LayerShellV1;
 pub const LayerSurfaceV1 = @import("types/layer_shell_v1.zig").LayerSurfaceV1;
+
+pub const SessionLockManagerV1 = @import("types/session_lock_v1.zig").SessionLockManagerV1;
+pub const SessionLockV1 = @import("types/session_lock_v1.zig").SessionLockV1;
+pub const SessionLockSurfaceV1 = @import("types/session_lock_v1.zig").SessionLockSurfaceV1;
 
 pub const Seat = @import("types/seat.zig").Seat;
 pub const SerialRange = @import("types/seat.zig").SerialRange;

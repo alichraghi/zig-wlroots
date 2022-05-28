@@ -21,6 +21,53 @@ const xcb = struct {
         bottom_if = 3,
         opposite = 4,
     };
+
+    pub const IcccmWmHints = extern struct {
+        flags: u32,
+
+        input: u32,
+        initial_state: i32,
+
+        icon_pixmap: xcb.Pixmap,
+        icon_window: xcb.Window,
+
+        icon_x: i32,
+        icon_y: i32,
+
+        icon_mask: xcb.Pixmap,
+
+        window_group: xcb.Window,
+    };
+
+    pub const SizeHints = extern struct {
+        flags: u32,
+
+        x: i32,
+        y: i32,
+
+        width: i32,
+        height: i32,
+
+        min_width: i32,
+        min_height: i32,
+
+        max_width: i32,
+        max_height: i32,
+
+        width_inc: i32,
+        height_inc: i32,
+
+        min_aspect_num: i32,
+        min_aspect_den: i32,
+
+        max_aspect_num: i32,
+        max_aspect_den: i32,
+
+        base_width: i32,
+        base_height: i32,
+
+        win_gravity: u32,
+    };
 };
 
 pub const Xwm = opaque {};
@@ -31,6 +78,8 @@ pub const XwaylandServer = extern struct {
         lazy: bool,
         enable_wm: bool,
         no_touch_pointer_emulation: bool,
+        force_xrandr_emulation: bool,
+        terminate_delay: c_int,
     };
 
     pub const event = struct {
@@ -140,39 +189,6 @@ pub const XwaylandSurface = extern struct {
         }
     };
 
-    pub const Hints = extern struct {
-        flags: u32,
-        input: u32,
-        initial_state: i32,
-        icon_pixmap: xcb.Pixmap,
-        icon_window: xcb.Window,
-        icon_x: i32,
-        icon_y: i32,
-        icon_mask: xcb.Pixmap,
-        window_group: xcb.Window,
-    };
-
-    pub const SizeHints = extern struct {
-        flags: u32,
-        x: i32,
-        y: i32,
-        width: i32,
-        height: i32,
-        min_width: i32,
-        min_height: i32,
-        max_width: i32,
-        max_height: i32,
-        width_inc: i32,
-        height_inc: i32,
-        base_width: i32,
-        base_height: i32,
-        min_aspect_num: i32,
-        min_aspect_den: i32,
-        max_aspect_num: i32,
-        max_aspect_den: i32,
-        win_gravity: u32,
-    };
-
     pub const event = struct {
         pub const Configure = extern struct {
             surface: *XwaylandSurface,
@@ -236,9 +252,8 @@ pub const XwaylandSurface = extern struct {
     protocols_len: usize,
 
     decorations: Decorations,
-    hints: ?*Hints,
-    hints_urgency: u32,
-    size_hints: ?*SizeHints,
+    hints: ?*xcb.IcccmWmHints,
+    size_hints: ?*xcb.SizeHints,
 
     pinging: bool,
     ping_timer: *wl.EventSource,

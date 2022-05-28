@@ -34,6 +34,7 @@ pub const Output = extern struct {
             pub const adaptive_sync_enabled = 1 << 6;
             pub const gamma_lut = 1 << 7;
             pub const render_format = 1 << 8;
+            pub const subpixel = 1 << 9;
         };
 
         pub const ModeType = enum(c_int) {
@@ -49,6 +50,7 @@ pub const Output = extern struct {
         transform: wl.Output.Transform,
         adaptive_sync_enabled: bool,
         render_format: u32,
+        subpixel: wl.Output.Subpixel,
 
         // if (committed & field.buffer)
         buffer: ?*wlr.Buffer,
@@ -122,12 +124,9 @@ pub const Output = extern struct {
 
     name: [*:0]u8,
     description: ?[*:0]u8,
-    /// This contains a 0 terminated string, use std.mem.sliceTo(make, 0)
-    make: [56]u8,
-    /// This contains a 0 terminated string, use std.mem.sliceTo(model, 0)
-    model: [16]u8,
-    /// This contains a 0 terminated string, use std.mem.sliceTo(serial, 0)
-    serial: [16]u8,
+    make: ?*[*:0]u8,
+    model: ?*[*:0]u8,
+    serial: ?*[*:0]u8,
     phys_width: i32,
     phys_height: i32,
 
